@@ -20,11 +20,13 @@ export class RecipeShowComponent implements OnInit {
         this.currentRoute.params
             .subscribe(
                 (params: Params) => {
-                    this.recipe = this.recipeService.recipes[params['id']];
+                    this.index = params['id'];
+                    this.recipe = this.recipeService.recipes[this.index];
                 }
             );
     }
 
     recipe: RecipeModel = new RecipeModel(0, '', '', '', []);
+    index: number = 0;
 
 }
