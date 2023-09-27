@@ -18,12 +18,21 @@ export class RecipeService {
 
     createRecipe(recipe: RecipeModel) {
         this.recipes.push(recipe);
-        this.router.navigate(['../'], {relativeTo: this.currentRoute});
+        this.router.navigate(['/recipes'], {relativeTo: this.currentRoute});
     }
 
     deleteRecipe(index: number) {
         this.recipes.splice(index, 1);
-        this.router.navigate([''], {relativeTo: this.currentRoute});
+        this.router.navigate(['/recipes'], {relativeTo: this.currentRoute});
+    }
+
+    editRecipe(index: number) {
+        this.router.navigate([`/recipes/${index}/edit`], {relativeTo: this.currentRoute});
+    }
+
+    updateRecipe(recipe: RecipeModel, index: number) {
+        this.recipes[index] = recipe;
+        this.router.navigate(['/recipes'], {relativeTo: this.currentRoute});
     }
 
 }

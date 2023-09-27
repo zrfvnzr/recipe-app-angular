@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, NgForm } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { RecipeService } from '../recipe.service';
+import { RecipeModel } from 'src/app/models/recipe.model';
 
 @Component({
     selector: 'app-recipe-create-or-edit',
@@ -17,10 +18,24 @@ export class RecipeCreateOrEditComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
+        this.currentRoute.params
+            .subscribe((params: Params) => {
+                this.editMode = params['id'] != null;
+                this.editIndex = this.editMode ? params['id'] : null;
+                this.editRecipe = this.editMode ? this.recipeService.recipes[params['id']] : null;
+            });
     }
 
-    onSubmit(form: NgForm) {
-        this.recipeService.createRecipe(form.value);
+    editMode: boolean = false;
+    editIndex: number;
+    editRecipe: RecipeModel;
+
+    onSubmit(form: NgForm, index?: number) {
+        if (this.editMode) {
+            this.recipeService.updateRecipe(form.value, index);
+        } else {
+            this.recipeService.createRecipe(form.value);
+        }
     }
 
     onCancel() {
