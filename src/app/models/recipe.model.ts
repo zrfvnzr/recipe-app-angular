@@ -1,3 +1,5 @@
+import { IngredientModel } from "./ingredient.model";
+
 export class RecipeModel {
 
     constructor(
@@ -5,7 +7,7 @@ export class RecipeModel {
         public name: string,
         public description: string,
         public imagePath: string,
-        public ingredients: any[]
+        public ingredients: IngredientModel[]
     ) {}
     
 }
