@@ -2,13 +2,15 @@ import { Injectable } from "@angular/core";
 import { RecipeModel } from "../models/recipe.model";
 import { ActivatedRoute, Router } from "@angular/router";
 import { IngredientModel } from "../models/ingredient.model";
+import { ShoppingListService } from "../shopping-list/shopping-list.service";
 
 @Injectable({providedIn: 'root'})
 export class RecipeService {
 
     constructor(
         private router: Router,
-        private currentRoute: ActivatedRoute
+        private currentRoute: ActivatedRoute,
+        private shoppingListService: ShoppingListService
     ) {}
 
     recipes: RecipeModel[] = [
@@ -36,6 +38,11 @@ export class RecipeService {
     updateRecipe(recipe: RecipeModel, index: number) {
         this.recipes[index] = recipe;
         this.router.navigate(['/recipes'], {relativeTo: this.currentRoute});
+    }
+
+    toShoppingList(recipe: RecipeModel) {
+        this.shoppingListService.shoppingList.push(...recipe.ingredients);
+        this.router.navigate(['shopping-list']);
     }
 
 }
