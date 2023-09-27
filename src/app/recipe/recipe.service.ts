@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { RecipeModel } from "../models/recipe.model";
 import { ActivatedRoute, Router } from "@angular/router";
+import { IngredientModel } from "../models/ingredient.model";
 
 @Injectable({providedIn: 'root'})
 export class RecipeService {
@@ -12,7 +13,7 @@ export class RecipeService {
 
     recipes: RecipeModel[] = [
         new RecipeModel(1, 'Recipe1', 'Recipe1 description', 'https://picsum.photos/id/1/100/100', [
-            { id: 1, name: 'Meat', amount: 10 }
+            new IngredientModel('Meat', 10)
         ]),
         new RecipeModel(2, 'Recipe2', 'Recipe2 description', 'https://picsum.photos/id/2/100/100', []),
         new RecipeModel(3, 'Recipe3', 'Recipe3 description', 'https://picsum.photos/id/3/100/100', [])

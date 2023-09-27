@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-md-12">
-        <form (ngSubmit)="onSubmit(form, editIndex)" #form="ngForm" class="d-flex flex-column">
+        <form (ngSubmit)="onSubmit(form)" #form="ngForm" class="d-flex flex-column">
             <div class="row ml-0 mb-3">
                 <button [disabled]="!form.valid" type="submit" class="btn btn-success mr-2">Save</button>
                 <button (click)="onCancel()" type="button" class="btn btn-danger">Cancel</button>
@@ -9,27 +9,62 @@
             <input
                 type="text"
                 name="name"
-                [ngModel]="editRecipe?.name"
+                [ngModel]="recipeFormModel.name"
                 ngModel
                 required>
             <label for="imagePath">Image URL</label>
-            <img *ngIf="form.form.value.imagePath" [src]="form.form.value.imagePath" alt="form.form.value.name" class="align-self-start img-responsive" style="max-height: 100px;">
+            <img *ngIf="form.form.value.imagePath" [src]="form.form.value.imagePath" alt="form.value.name" class="align-self-start img-responsive" style="max-height: 100px;">
             <input
                 type="text"
                 name="imagePath"
-                [ngModel]="editRecipe?.imagePath"
+                [ngModel]="recipeFormModel.imagePath"
                 ngModel
                 required>
             <label for="description">Description</label>
             <textarea
                 name="description"
                 rows="6"
-                [ngModel]="editRecipe?.description"
+                [ngModel]="recipeFormModel.description"
                 ngModel
                 required>
             </textarea>
-            <label for="ingredients">Ingredients</label>
-            <p>To do</p>
+            <label for="ingredients" class="border-bottom">Ingredients</label>
+            <div class="row">
+                <div class="col-md-6">
+                    <b>Name</b>
+                </div>
+                <div class="col-md-6">
+                    <b>Amount</b>
+                </div>
+            </div>
+            <div *ngFor="let ingredient of recipeFormModel.ingredients; let i = index">
+                <div class="row">
+                    <div class="col-md-5">
+                        <input
+                            type="text"
+                            ngModel
+                            name="{{ingredient.name}}-{{i}}"
+                            [(ngModel)]="ingredient.name"
+                            required>
+                    </div>
+                    <div class="col-md-5">
+                        <input
+                            type="number"
+                            ngModel
+                            name="{{ingredient.amount}}-{{i}}"
+                            [(ngModel)]="ingredient.amount"
+                            required>
+                    </div>
+                    <div class="col-md-2">
+                        <button (click)="deleteIngredient(i)" type="button" class="btn btn-sm btn-danger">X</button>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 mt-2">
+                    <button (click)="addIngredient()" type="button" class="align-items-start btn btn-sm btn-primary">Add Ingredient</button>
+                </div>
+            </div>
         </form>
     </div>
 </div>
