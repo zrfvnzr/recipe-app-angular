@@ -1,1 +1,59 @@
-<p>shopping-list works!</p>
+<div class="row">
+    <div class="col-md-12">
+        <div class="row ml-0">
+            <div class="col-xs-12">
+                <form (ngSubmit)="onSubmit(form)" #form="ngForm">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="name">Name</label>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="amount">Amount</label>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <input
+                                type="text"
+                                ngModel
+                                name="name"
+                                required
+                                [ngModel]="ingredientFormModel?.name">
+                        </div>
+                        <div class="col-md-6">
+                            <input
+                                type="number"
+                                ngModel
+                                name="amount"
+                                required
+                                [ngModel]="ingredientFormModel?.amount">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <button [disabled]="!form.valid" type="submit" class="btn btn-success mr-2">{{ this.editMode ? 'Update' : 'Add'}}</button>
+                            <button (click)="resetForm()" type="button" class="btn btn-primary">Clear</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <hr>
+        <br>
+        <div class="col-md-6 pl-0">
+            <ul class="list-group">
+                <li *ngFor="let ingredient of shoppingListService.shoppingList; let i = index" class="list-group-item">
+                    <div class="row justify-content-between">
+                        <span>
+                            {{ ingredient.name }} - {{ ingredient.amount }}
+                        </span>
+                        <div class="d-flex">
+                            <button (click)="shoppingListService.deleteIngredient(i)" type="button" class="btn btn-sm btn-danger mr-2">Delete</button>
+                            <button (click)="editIngredient(i)" type="button" class="btn btn-sm btn-warning">Edit</button>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
