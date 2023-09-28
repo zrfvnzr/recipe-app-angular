@@ -38,7 +38,7 @@ export class RecipeCreateOrEditComponent implements OnInit {
     onSubmit(form: NgForm) {
         form.value.ingredients = this.recipeFormModel.ingredients;
         if (this.editMode) {
-            this.recipeService.updateRecipe(form.value, this.editIndex);
+            this.recipeService.updateRecipe(form.value, this.recipeFormModel.id);
         } else {
             this.recipeService.createRecipe(form.value);
         }

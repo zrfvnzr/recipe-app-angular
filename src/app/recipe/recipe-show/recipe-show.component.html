@@ -21,7 +21,7 @@
         <div class="col-xs-12">
             <button (click)="recipeService.toShoppingList(recipe)" type="button" class="btn btn-primary mr-2">To Shopping List</button>
             <button (click)="recipeService.editRecipe(index)" type="button" class="btn btn-warning mr-2">Edit Recipe</button>
-            <button type="button" class="btn btn-danger" (click)="recipeService.deleteRecipe(index)">Delete Recipe</button>
+            <button type="button" class="btn btn-danger" (click)="recipeService.deleteRecipe(recipe.id)">Delete Recipe</button>
         </div>
     </div>
     <div class="row mb-2">
