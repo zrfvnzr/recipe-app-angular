@@ -49,7 +49,7 @@ export class RecipeCreateOrEditComponent implements OnInit {
     }
 
     addIngredient() {
-        this.recipeFormModel.ingredients.push(new IngredientModel('', 1));
+        this.recipeFormModel.ingredients.push(new IngredientModel(0, '', 1));
     }
 
     deleteIngredient(index: number) {

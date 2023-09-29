@@ -14,7 +14,7 @@ export class RecipeService {
         private http: HttpClient,
         private shoppingListService: ShoppingListService
     ) {
-        this.indexRecipe(); // temp
+        this.indexRecipe();
     }
 
     backendURL: string = 'http://localhost:8080';
@@ -77,7 +77,9 @@ export class RecipeService {
     }
 
     toShoppingList(recipe: RecipeModel) {
-        this.shoppingListService.shoppingList.push(...recipe.ingredients);
+        for (let ingredient of recipe.ingredients) {
+            this.shoppingListService.storeIngredient(ingredient);
+        }
         this.router.navigate(['shopping-list']);
     }
 
