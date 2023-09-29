@@ -1,7 +1,6 @@
 import { Injectable } from "@angular/core";
 import { RecipeModel } from "../models/recipe.model";
 import { ActivatedRoute, Router } from "@angular/router";
-import { IngredientModel } from "../models/ingredient.model";
 import { ShoppingListService } from "../shopping-list/shopping-list.service";
 import { HttpClient } from "@angular/common/http";
 
@@ -22,7 +21,6 @@ export class RecipeService {
     recipes: RecipeModel[] = []
 
     indexRecipe() {
-        // console.log(JSON.stringify(this.recipes[0].ingredients)); // debug
         this.http.get(`${this.backendURL}/api/recipes`).subscribe({
             next: (response: any[]) => {
                 for (let recipe of response) {
