@@ -4,6 +4,7 @@ import { RecipeComponent } from "./recipe/recipe.component";
 import { ShoppingListComponent } from "./shopping-list/shopping-list.component";
 import { RecipeShowComponent } from "./recipe/recipe-show/recipe-show.component";
 import { RecipeCreateOrEditComponent } from "./recipe/recipe-create-or-edit/recipe-create-or-edit.component";
+import { AuthComponent } from "./auth/auth.component";
 
 const appRoutes: Routes = [
     { path: '', redirectTo: '/recipes', pathMatch: 'full' },
@@ -13,7 +14,8 @@ const appRoutes: Routes = [
         { path: ':id', component: RecipeShowComponent },
         { path: ':id/edit', component: RecipeCreateOrEditComponent }
     ]},
-    { path: 'shopping-list', component: ShoppingListComponent}
+    { path: 'shopping-list', component: ShoppingListComponent},
+    { path: 'auth', component: AuthComponent }
 ];
 
 @NgModule({

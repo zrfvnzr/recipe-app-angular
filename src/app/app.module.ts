@@ -12,6 +12,7 @@ import { RecipeIndexComponent } from './recipe/recipe-index/recipe-index.compone
 import { RecipeItemComponent } from './recipe/recipe-index/recipe-item/recipe-item.component';
 import { RecipeShowComponent } from './recipe/recipe-show/recipe-show.component';
 import { FormsModule } from '@angular/forms';
+import { AuthComponent } from './auth/auth.component';
 
 @NgModule({
     declarations: [
@@ -22,7 +23,8 @@ import { FormsModule } from '@angular/forms';
         RecipeCreateOrEditComponent,
         RecipeIndexComponent,
         RecipeItemComponent,
-        RecipeShowComponent
+        RecipeShowComponent,
+        AuthComponent
     ],
     imports: [
         AppRoutingModule,
