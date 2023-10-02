@@ -9,7 +9,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { AuthComponent } from './auth/auth.component';
 import { AlertComponent } from './alert/alert.component';
-import { RecipeModule } from './recipe/recipe.module';
 
 @NgModule({
     declarations: [
@@ -23,8 +22,7 @@ import { RecipeModule } from './recipe/recipe.module';
         AppRoutingModule,
         BrowserModule,
         FormsModule,
-        HttpClientModule,
-        RecipeModule
+        HttpClientModule
     ],
     providers: [],
     bootstrap: [AppComponent]
