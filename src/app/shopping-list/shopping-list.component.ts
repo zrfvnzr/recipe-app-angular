@@ -1,7 +1,8 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { IngredientModel } from '../models/ingredient.model';
 import { ShoppingListService } from './shopping-list.service';
 import { NgForm } from '@angular/forms';
+import { AlertComponent } from '../alert/alert.component';
 
 @Component({
     selector: 'app-shopping-list',
@@ -9,8 +10,6 @@ import { NgForm } from '@angular/forms';
     styleUrls: ['./shopping-list.component.css']
 })
 export class ShoppingListComponent implements OnInit {
-
-    @ViewChild('form', {static: false}) form: NgForm;
 
     constructor(
         public shoppingListService: ShoppingListService
@@ -20,17 +19,24 @@ export class ShoppingListComponent implements OnInit {
         this.shoppingListService.clearForm
             .subscribe(() => {
                 this.resetForm();
-            })
+            });
+        this.shoppingListService.showError
+            .subscribe((message) => {
+                this.showError(message);
+            });
     }
+
+    @ViewChild('form', {static: false}) form: NgForm;
+    @ViewChild('error', {static: false, read: ViewContainerRef}) error: ViewContainerRef;
+
+    ingredientFormModel: IngredientModel;
+    editMode: boolean;
+    editIngredientIndex: number;
 
     resetForm() {
         this.form.reset();
         this.editMode = false;
     }
-
-    ingredientFormModel: IngredientModel;
-    editMode: boolean;
-    editIngredientIndex: number;
 
     onSubmit(form: NgForm) {
         if (this.editMode) {
@@ -47,6 +53,15 @@ export class ShoppingListComponent implements OnInit {
         this.editIngredientIndex = index;
         const ingredient = this.shoppingListService.shoppingList[index];
         this.form.setValue(ingredient);
+    }
+
+    private showError(message: string) {
+        this.error.clear();
+        const alertRef = this.error.createComponent(AlertComponent);
+        alertRef.instance.closeError = () => {
+            this.error.clear();
+        }
+        alertRef.instance.message = message;
     }
 
 }

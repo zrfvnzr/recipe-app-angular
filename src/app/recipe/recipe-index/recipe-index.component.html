@@ -1,3 +1,4 @@
+<app-alert [message]="recipeService.error" *ngIf="recipeService.error"></app-alert>
 <div class="row">
     <div class="col-md-12">
         <button class="btn btn-success" (click)="createRecipe()">New Recipe</button>

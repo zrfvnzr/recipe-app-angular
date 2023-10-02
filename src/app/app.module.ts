@@ -13,6 +13,7 @@ import { RecipeItemComponent } from './recipe/recipe-index/recipe-item/recipe-it
 import { RecipeShowComponent } from './recipe/recipe-show/recipe-show.component';
 import { FormsModule } from '@angular/forms';
 import { AuthComponent } from './auth/auth.component';
+import { AlertComponent } from './alert/alert.component';
 
 @NgModule({
     declarations: [
@@ -24,7 +25,8 @@ import { AuthComponent } from './auth/auth.component';
         RecipeIndexComponent,
         RecipeItemComponent,
         RecipeShowComponent,
-        AuthComponent
+        AuthComponent,
+        AlertComponent
     ],
     imports: [
         AppRoutingModule,

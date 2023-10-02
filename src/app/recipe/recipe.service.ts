@@ -20,6 +20,8 @@ export class RecipeService {
 
     recipes: RecipeModel[] = []
 
+    error: string;
+
     indexRecipe() {
         this.http.get(`${this.backendURL}/api/recipes`).subscribe({
             next: (response: any[]) => {
@@ -29,7 +31,8 @@ export class RecipeService {
                 this.recipes = response;
             },
             error: (error) => {
-                alert(error.error);
+                this.error = 'Error on retrieving recipe list';
+                console.error(error.error);
             }
         });
     }
@@ -40,7 +43,8 @@ export class RecipeService {
                 this.indexRecipe();
             },
             error: (error) => {
-                alert(error.error);
+                this.error = 'Error on creating recipe';
+                console.error(error.error);
             }
         });
         this.router.navigate(['/recipes'], {relativeTo: this.currentRoute});
@@ -52,7 +56,8 @@ export class RecipeService {
                 this.indexRecipe();
             },
             error: (error) => {
-                alert(error);
+                this.error = 'Error on deleting recipe';
+                console.error(error.error);
             }
         });
         this.router.navigate(['/recipes'], {relativeTo: this.currentRoute});
@@ -68,7 +73,8 @@ export class RecipeService {
                 this.indexRecipe();
             },
             error: (error) => {
-                alert(error.error);
+                this.error = 'Error on editing recipe';
+                console.error(error.error);
             }
         });
         this.router.navigate(['/recipes'], {relativeTo: this.currentRoute});

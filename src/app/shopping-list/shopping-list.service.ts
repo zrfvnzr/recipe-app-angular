@@ -18,13 +18,16 @@ export class ShoppingListService {
 
     backendURL:string = 'http://localhost:8080/api/ingredients';
 
+    showError = new Subject<string>();
+
     indexIngredient() {
         this.http.get(this.backendURL).subscribe({
             next: (response: any[]) => {
                 this.shoppingList = response;
             },
             error: (error) => {
-                alert(error.error);
+                console.error(error.error);
+                this.showError.next('Error on retrieving shopping list');
             }
         });
     }
@@ -36,7 +39,7 @@ export class ShoppingListService {
                 this.indexIngredient();
             },
             error: (error) => {
-                alert(error.error);
+                console.error(error.error);
             }
         });
     }
@@ -47,7 +50,7 @@ export class ShoppingListService {
                 this.indexIngredient();
             },
             error: (error) => {
-                alert(error.error);
+                console.error(error.error);
             }
         });
     }
@@ -59,7 +62,7 @@ export class ShoppingListService {
                 this.indexIngredient();
             },
             error: (error) => {
-                alert(error.error);
+                console.error(error.error);
             }
         });
     }
