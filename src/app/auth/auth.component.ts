@@ -12,4 +12,10 @@ export class AuthComponent implements OnInit {
     ngOnInit(): void {
     }
 
+    mode: string = 'login' // 'login' | 'register'
+
+    switchMode() {
+        this.mode = this.mode === 'login' ? 'register' : 'login';
+    }
+
 }
