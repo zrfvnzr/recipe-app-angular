@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 @Component({
     selector: 'app-auth',
@@ -12,10 +13,17 @@ export class AuthComponent implements OnInit {
     ngOnInit(): void {
     }
 
+    @ViewChild('form', {static: false}) form: NgForm;
+
     mode: string = 'login' // 'login' | 'register'
 
     switchMode() {
+        this.form.reset();
         this.mode = this.mode === 'login' ? 'register' : 'login';
+    }
+
+    onSubmit(form: NgForm) {
+        form.reset();
     }
 
 }
