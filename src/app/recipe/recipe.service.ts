@@ -3,6 +3,7 @@ import { RecipeModel } from "../models/recipe.model";
 import { ActivatedRoute, Router } from "@angular/router";
 import { ShoppingListService } from "../shopping-list/shopping-list.service";
 import { HttpClient } from "@angular/common/http";
+import { environment } from "src/environments/environment";
 
 @Injectable({providedIn: 'root'})
 export class RecipeService {
@@ -16,7 +17,7 @@ export class RecipeService {
         this.indexRecipe();
     }
 
-    backendURL: string = 'http://localhost:8080';
+    backendURL: string = environment.backendUrl;
 
     recipes: RecipeModel[] = []
 

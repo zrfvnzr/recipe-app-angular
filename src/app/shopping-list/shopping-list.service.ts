@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { IngredientModel } from "../models/ingredient.model";
 import { Subject } from "rxjs";
 import { HttpClient } from "@angular/common/http";
+import { environment } from "src/environments/environment";
 
 @Injectable({providedIn: 'root'})
 export class ShoppingListService {
@@ -16,7 +17,7 @@ export class ShoppingListService {
 
     shoppingList: IngredientModel[] = [];
 
-    backendURL:string = 'http://localhost:8080/api/ingredients';
+    backendURL:string = `${environment.backendUrl}/api/ingredients`;
 
     showError = new Subject<string>();
 
